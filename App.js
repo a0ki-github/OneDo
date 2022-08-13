@@ -47,16 +47,20 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={ styles.title }>TODO</Text>
-      <TextInput
-        value={text}
-        onChangeText={onChangeText}
-        style={styles.textInput}
-      />
-      <Button
-        title="submit"
-        color="blue"
-        onPress={onPressButton}
-      />
+      { todos.length === 0 &&
+        <View>
+          <TextInput
+            value={text}
+            onChangeText={onChangeText}
+            style={styles.textInput}
+          />
+          <Button
+            title="submit"
+            color="blue"
+            onPress={onPressButton}
+          />
+        </View>
+      }
       <FlatList
         data={todos}
         renderItem={renderItem}
