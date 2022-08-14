@@ -6,15 +6,22 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  FlatList,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   const [text, setText] = useState("")
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState("")
 
+  AsyncStorage.getItem('TODO')
+    .then((value) => {
+      setTodo(value)
+    })
+
+  console.log(todo)
   const onPressItemDelete = () => {
     setTodo("")
+    AsyncStorage.clear()
   }
 
   const onChangeText = (value) => {
@@ -22,6 +29,8 @@ export default function App() {
   }
 
   const onPressButton = () => {
+    AsyncStorage.clear()
+    AsyncStorage.setItem('TODO', text)
     setTodo(text)
     setText("")
   }
@@ -29,7 +38,17 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={ styles.title }>TODO</Text>
-      { todo.length === 0 ?
+      { todo ?
+        <View style={ styles.item }>
+          <Text style={ styles.itemName }>{ todo }</Text>
+          <TouchableOpacity
+            onPress={onPressItemDelete}
+            style={ styles.deleteView }
+          >
+            <Text style={ styles.deleteText } >完了 or 削除</Text>
+          </TouchableOpacity>
+        </View>
+        :
         <View>
           <TextInput
             value={text}
@@ -41,16 +60,6 @@ export default function App() {
             color="blue"
             onPress={onPressButton}
           />
-        </View>
-        :
-        <View style={ styles.item }>
-          <Text style={ styles.itemName }>{ todo }</Text>
-          <TouchableOpacity
-            onPress={onPressItemDelete}
-            style={ styles.deleteView }
-          >
-            <Text style={ styles.deleteText } >完了 or 削除</Text>
-          </TouchableOpacity>
         </View>
       }
     </View>
