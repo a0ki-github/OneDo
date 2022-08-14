@@ -11,11 +11,10 @@ import {
 
 export default function App() {
   const [text, setText] = useState("")
-  const [todos, setTodos] = useState([]);
+  const [todo, setTodo] = useState("");
 
-  const onPressItemDelete = (key) => {
-    const newTodos = todos.filter((item) => item.key !== key)
-    setTodos(newTodos)
+  const onPressItemDelete = () => {
+    setTodo("")
   }
 
   const onChangeText = (value) => {
@@ -23,31 +22,14 @@ export default function App() {
   }
 
   const onPressButton = () => {
-    const newTodos = [...todos, {
-      name: text, key: Math.random().toString(),
-    }]
+    setTodo(text)
     setText("")
-    setTodos(newTodos)
-  }
-
-  const renderItem = ({item}) => {
-    return (
-      <View style={ styles.item }>
-        <Text style={ styles.itemName }>{ item.name }</Text>
-        <TouchableOpacity
-          onPress={() => onPressItemDelete(item.key)}
-          style={ styles.deleteView }
-        >
-          <Text style={ styles.deleteText } >Done or Delete</Text>
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   return (
     <View style={styles.container}>
       <Text style={ styles.title }>TODO</Text>
-      { todos.length === 0 &&
+      { todo.length === 0 ?
         <View>
           <TextInput
             value={text}
@@ -55,16 +37,22 @@ export default function App() {
             style={styles.textInput}
           />
           <Button
-            title="submit"
+            title="作成"
             color="blue"
             onPress={onPressButton}
           />
         </View>
+        :
+        <View style={ styles.item }>
+          <Text style={ styles.itemName }>{ todo }</Text>
+          <TouchableOpacity
+            onPress={onPressItemDelete}
+            style={ styles.deleteView }
+          >
+            <Text style={ styles.deleteText } >完了 or 削除</Text>
+          </TouchableOpacity>
+        </View>
       }
-      <FlatList
-        data={todos}
-        renderItem={renderItem}
-      />
     </View>
   );
 }
@@ -101,11 +89,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   deleteView: {
-    width: 50,
     backgroundColor: 'gray',
   },
   deleteText: {
     color: 'white',
     textAlign: 'center',
+    margin: 10,
   },
 });
