@@ -10,17 +10,16 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
-  const [text, setText] = useState("")
-  const [todo, setTodo] = useState("")
+  const [text, setText] = useState('')
+  const [todo, setTodo] = useState('')
 
   AsyncStorage.getItem('TODO')
     .then((value) => {
       setTodo(value)
     })
 
-  console.log(todo)
   const onPressItemDelete = () => {
-    setTodo("")
+    setTodo('')
     AsyncStorage.clear()
   }
 
@@ -32,12 +31,12 @@ export default function App() {
     AsyncStorage.clear()
     AsyncStorage.setItem('TODO', text)
     setTodo(text)
-    setText("")
+    setText('')
   }
 
   return (
     <View style={styles.container}>
-      <Text style={ styles.title }>TODO</Text>
+      <Text style={ styles.title }>One ToDo</Text>
       { todo ?
         <View style={ styles.item }>
           <Text style={ styles.itemName }>{ todo }</Text>
@@ -56,8 +55,8 @@ export default function App() {
             style={styles.textInput}
           />
           <Button
-            title="作成"
-            color="blue"
+            title='作成'
+            color='blue'
             onPress={onPressButton}
           />
         </View>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginTop: 80,
     marginBottom: 20,
   },
