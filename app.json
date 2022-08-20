@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "OneDo",
-    "slug": "OneDo",
+    "name": "OneToDo",
+    "slug": "OneToDo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
