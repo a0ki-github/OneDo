@@ -18,7 +18,7 @@ export default function App() {
       setTodo(value)
     })
 
-  const onPressItemDelete = () => {
+  const onPressItemCompleteOrDelete = () => {
     setTodo('')
     AsyncStorage.clear()
   }
@@ -27,7 +27,7 @@ export default function App() {
     setText(value)
   }
 
-  const onPressButton = () => {
+  const onPressRegister = () => {
     AsyncStorage.clear()
     AsyncStorage.setItem('TODO', text)
     setTodo(text)
@@ -41,7 +41,7 @@ export default function App() {
         <View style={ styles.item }>
           <Text style={ styles.itemName }>{ todo }</Text>
           <TouchableOpacity
-            onPress={onPressItemDelete}
+            onPress={onPressItemCompleteOrDelete}
             style={ styles.deleteView }
           >
             <Text style={ styles.deleteText } >完了 or 削除</Text>
@@ -57,7 +57,7 @@ export default function App() {
           <Button
             title='作成'
             color='blue'
-            onPress={onPressButton}
+            onPress={onPressRegister}
           />
         </View>
       }
