@@ -4,10 +4,10 @@
     "slug": "OneToDo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/one-to-do.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/one-to-do.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,13 +21,18 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.a0ki.onetodo",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/one-to-do.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/one-to-do.png"
     }
   }
 }
