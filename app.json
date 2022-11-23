@@ -21,6 +21,7 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 1,
       "package": "com.a0ki.onetodo",
       "adaptiveIcon": {
         "foregroundImage": "./assets/one-to-do.png",
